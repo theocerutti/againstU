@@ -28,13 +28,13 @@ h1, h2, p, label
 h1
 {
     font-size: 80px;
-    color: white;
+    color: #FCF7F7;
 }
 
 h2
 {
     font-size: 60px;
-    color: white;
+    color: #FCF7F7;
 }
 
 p
@@ -78,7 +78,7 @@ label
     padding-right: 100px;
     padding-top: 100px;
     padding-bottom: 50px;
-    text-shadow: red 5px 5px, red -5px 5px, red -5px -5px, red 5px -5px;
+    -webkit-text-stroke: 3px #FF5722;
     text-align: center;
 }
 
@@ -98,16 +98,34 @@ label
 
 #server_country_txt
 {
-    text-shadow: red 3px 3px, red -3px 3px, red -3px -3px, red 3px -3px;
+    -webkit-text-stroke: 2px #FF5722;
     text-align: center;
 }
 
 #select_server_div
 {
-    padding-left: 46%;
+    padding-left: 42%;
 }
 
-.select_server_item:hover
+#select_server
 {
-    background-color: red;
+    width: 300px;
+    font-family: "latoLight";
+    font-size: 20px;
+    color: white;
+    background-color: black
+}
+
+#submit_button_div
+{
+    padding-top: 50px;
+    text-align: center;
+}
+
+#submit_button
+{
+    font-family: "latoLight";
+    font-size: 25px;
+    height: 50px;
+    width: 100px;
 }
