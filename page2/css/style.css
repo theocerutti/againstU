@@ -104,10 +104,28 @@ label
 
 #select_server_div
 {
-    padding-left: 46%;
+    padding-left: 42%;
 }
 
-.select_server_item:hover
+#select_server
 {
-    background-color: red;
+    width: 300px;
+    font-family: "LatoLight";
+    font-size: 20px;
+    color: white;
+    background-color: black
+}
+
+#submit_button_div
+{
+    padding-top: 50px;
+    text-align: center;
+}
+
+#submit_button
+{
+    font-family: "LatoLight";
+    font-size: 25px;
+    height: 50px;
+    width: 100px;
 }
