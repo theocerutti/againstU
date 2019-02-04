@@ -87,21 +87,3 @@ label
     padding-bottom: 50px;
     text-align: center;
 }
-
-#server_country_txt
-{
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-top: 50px;
-    text-align: center;
-}
-
-#select_server_div
-{
-    padding-left: 46%;
-}
-
-.select_server_item:hover
-{
-    background-color: red;
-}
