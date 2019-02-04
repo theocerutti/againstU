@@ -75,3 +75,12 @@ body{
     height: 60px;
     font-size: 40px;
 }
+
+#select_server_div
+{
+}
+
+.select_server_item:hover
+{
+    background-color: red;
+}
