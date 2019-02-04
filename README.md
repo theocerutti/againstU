@@ -1,6 +1,6 @@
 # againstU
 
-againstU is a Website which enable you to get information about you and your oponent.
+againstU is a Website which enable you to get information about you and your opponent.
 
 ## Author
 
