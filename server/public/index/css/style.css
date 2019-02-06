@@ -4,6 +4,12 @@
     src: url("../../lib/fonts/lato/Lato-Black.ttf");
 }
 
+@font-face
+{
+    font-family: "marketDeco";
+    src: url("../../lib/fonts/market_deco/Market_Deco.ttf");
+}
+
 #header
 {
     position: fixed;
@@ -88,4 +94,25 @@ label
 .button_choose_game:hover
 {
     opacity: 1;
+}
+
+#contener:hover > #choose_game_txt
+{
+    text-shadow: 1px 1px 2px blue, 0 0 1em blue, 0 0 1em blue;
+}
+
+#contener:hover > #choose_game_txt
+{
+    text-shadow: 1px 1px 2px red, 0 0 1em red, 0 0 1em red;
+}
+
+#choose_game_txt
+{
+    font-family: marketDeco, latoLight;
+    text-shadow: 1px 1px 2px blue, 0 0 1em blue, 0 0 1em blue;
+    font-size: 100px;
+    z-index: 3;
+    margin-left: 20%;
+    margin-top: 15%;
+    position: absolute;
 }
