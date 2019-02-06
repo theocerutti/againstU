@@ -25,33 +25,45 @@ html {
     overflow-x: hidden;
 }
 
-h1, h2, p, label
+h1, h2, p, ul, label
 {
     font-family: 'latoBlack';
+    color: #FCF7F7;
 }
 
 h1
 {
     font-size: 80px;
-    color: white;
 }
 
 h2
 {
     font-size: 60px;
-    color: white;
 }
 
 p
 {
-    color: white;
     text-align: center;
 }
 
 label
 {
-    color: white;
     font-size: 15px;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+a:link
+{
+    color: white;
+}
+
+a:visited
+{
+    color: white;
 }
 
 #body_div
@@ -70,6 +82,11 @@ label
 {
     padding: 20px;
     padding-right: 100px;
+}
+
+.button_header:hover
+{
+    text-decoration: underline;
 }
 
 #main_logo

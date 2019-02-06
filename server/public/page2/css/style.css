@@ -20,33 +20,25 @@
     top: 0;
 }
 
-h1, h2, p, label
+h1, h2, p, label, ul, a
 {
     font-family: 'latoBlack';
+    color: #FCF7F7;
 }
 
 h1
 {
     font-size: 80px;
-    color: #FCF7F7;
 }
 
 h2
 {
     font-size: 60px;
-    color: #FCF7F7;
 }
 
-p
+a
 {
-    color: white;
-    text-align: center;
-}
-
-label
-{
-    color: white;
-    font-size: 15px;
+    text-decoration: none;
 }
 
 #body_div
@@ -62,8 +54,14 @@ label
 
 .button_header
 {
+    text-decoration: none;
     padding: 20px;
     padding-right: 100px;
+}
+
+.button_header:hover
+{
+    text-decoration: underline;
 }
 
 #main_logo
