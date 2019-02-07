@@ -18,4 +18,4 @@ To begin, you need to go to:
 
 ## License
 
-MIT License. Copyright 2011 Applicake.
+MIT License.
