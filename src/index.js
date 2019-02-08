@@ -62,16 +62,53 @@ app.post('/lol', async (req, res) => {
     }
 })
 
+app.post('/dota', async (req, res) => {
+    const { body } = req;
+    body.username = encodeURIComponent(body.username);
+    if (body.server === "EU West") {
+        await axios.get('https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + body.username + '?api_key=RGAPI-1998d3e5-13cf-4d4c-a321-bd1cc4733a81')
+            .then((response) => {
+                stat.status = response.status;
+                stat.data_acc = response.data;
+                stat.data_acc.profileIconId = "http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/" + stat.data_acc.profileIconId + ".png";
+            });
+        if (stat.status === 200)
+            res.send('Player found');
+    } else if (body.server === "North America") {
+        await axios.get('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + body.username + '?api_key=RGAPI-1998d3e5-13cf-4d4c-a321-bd1cc4733a81')
+            .then((response) => {
+                stat.status = response.status;
+                stat.data_acc = response.data;
+            });
+        if (stat.status === 200)
+            res.send('Player found');
+    }
+})
+
 // ---------------------------------------------------------
 
 /*
-** page to see LOL stats 
+** page to see LOL stats
 ** access on this page only by search
 ** and if the player is found
 */
 
 app.get('/lol_stat', (req, res) => {
     res.render('lol_stat', { stat });
+})
+
+// ---------------------------------------------------------
+
+// ---------------------------------------------------------
+
+/*
+** page to see DOTA stats
+** access on this page only by search
+** and if the player is found
+*/
+
+app.get('/_stat', (req, res) => {
+    res.render('dota_stat', { stat });
 })
 
 // ---------------------------------------------------------
