@@ -1,0 +1,90 @@
+/*
+** EPITECH PROJECT, 2019
+** againstU
+** File description:
+** css style Antoine Maillard
+*/
+
+@font-face
+{
+    font-family: "latoBlack";
+    src: url('../../lib/fonts/lato/Lato-Black.ttf');
+}
+
+h1, h2, p, label, ul, a
+{
+    font-family: latoBlack, Tahoma, Geneva, sans-serif;
+    color: #FCF7F7;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+#header
+{
+    position: fixed;
+    height: 10%;
+    width: 100%;
+    background-color: black;
+    left: 0;
+    top: 0;
+}
+
+#header_contener
+{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#main_logo
+{
+    float: left;
+    padding: 20px;
+}
+
+.button_header
+{
+    text-decoration: none;
+    padding: 15px;
+    padding-right: 100px;
+}
+
+.button_header:hover
+{
+    text-decoration: underline;
+}
+
+body
+{
+    background-image: url("../../lib/images/bg_lol.jpg");
+}
+
+#info{
+    font-size: 80px;
+    -webkit-text-stroke: 2px Black;
+    font-weight: bold;
+}
+
+#network_id_box{
+    margin-top: 200px;
+    color: White;
+    width: 100%;
+    text-align: center;
+}
+
+.network_id{
+    display: block;
+    text-align: center;
+}
+
+.input{
+    display: inline-block;
+    height: 100px;
+}
+
+.input_network_id{
+    height: 60px;
+    font-size: 40px;
+}
