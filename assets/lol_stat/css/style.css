@@ -1,0 +1,63 @@
+/*
+** stylesheet for lol_stat
+** page.
+**
+*/
+
+h1, h2, p, label
+{
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+#header
+{
+    position: fixed;
+    height: 10%;
+    width: 100%;
+    background-color: black;
+    left: 0;
+    top: 0;
+}
+
+#header_contener
+{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#main_logo
+{
+    float: left;
+    padding: 20px;
+}
+
+.button_header
+{
+    padding: 15px;
+    padding-right: 100px;
+}
+
+#header_stat
+{
+    display: flex;
+    height: 200px;
+    margin-top: 120px;
+    background-color: yellow;
+}
+
+.header_stat_box
+{
+    background-color: red;
+}
+
+#icon
+{
+    height: 150px;
+    padding: 25px;
+}
+
+#id_lvl
+{
+    padding-top: 10px;
+    width: 10%;
+}
