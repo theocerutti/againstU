@@ -15,11 +15,12 @@
     </header>
 
     <body>
-        <div id="account_info">
-            <p><br><br><br><br><br></p>
-            <img src="{{stat.data_acc.profileIconId}}">
-            <p>Summoner name : {{stat.data_acc.name}}</p>
-            <p>Level : {{stat.data_acc.summonerLevel}}</p>
+        <div id="header_stat">
+            <img src="{{stat.data_acc.profileIconId}}" alt="Icon not found" class="header_stat_box" id="icon">
+            <div id="id_lvl" class="header_stat_box">
+                <p>{{stat.data_acc.name}}</p>
+                <p>Level : {{stat.data_acc.summonerLevel}}</p>
+            </div>
         </div>
 
     </body>
