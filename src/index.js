@@ -17,6 +17,10 @@ var stat = {
     "data_match": {}
 };
 
+var stat_dota = {
+
+}
+
 const app = express();
 
 app.set('view engine', 'hbs');
@@ -66,21 +70,21 @@ app.post('/dota', async (req, res) => {
     const { body } = req;
     body.username = encodeURIComponent(body.username);
     if (body.server === "EU West") {
-        await axios.get('https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + body.username + '?api_key=RGAPI-1998d3e5-13cf-4d4c-a321-bd1cc4733a81')
+        await axios.get('https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + body.username + '?api_key=RGAPI-c7a4177a-02d6-4ef4-833f-6ab693938b61')
             .then((response) => {
-                stat.status = response.status;
-                stat.data_acc = response.data;
-                stat.data_acc.profileIconId = "http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/" + stat.data_acc.profileIconId + ".png";
+                stat_dota.status = response.status;
+                stat_dota.data_acc = response.data;
+                stat_dota.data_acc.profileIconId = "http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/" + stat_dota.data_acc.profileIconId + ".png";
             });
         if (stat.status === 200)
             res.send('Player found');
     } else if (body.server === "North America") {
-        await axios.get('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + body.username + '?api_key=RGAPI-1998d3e5-13cf-4d4c-a321-bd1cc4733a81')
+        await axios.get('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + body.username + '?api_key=RGAPI-c7a4177a-02d6-4ef4-833f-6ab693938b61')
             .then((response) => {
-                stat.status = response.status;
-                stat.data_acc = response.data;
+                stat_dota.status = response.status;
+                stat_dota.data_acc = response.data;
             });
-        if (stat.status === 200)
+        if (stat_dota.status === 200)
             res.send('Player found');
     }
 })
@@ -107,7 +111,7 @@ app.get('/lol_stat', (req, res) => {
 ** and if the player is found
 */
 
-app.get('/_stat', (req, res) => {
+app.get('/dota_stat', (req, res) => {
     res.render('dota_stat', { stat });
 })
 
