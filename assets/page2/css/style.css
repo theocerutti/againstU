@@ -1,0 +1,131 @@
+@font-face
+{
+    font-family: "latoBlack";
+    src: url("../../lib/fonts/lato/Lato-Black.ttf");
+}
+
+@font-face
+{
+    font-family: "latoLight";
+    src: url("../../lib/fonts/lato/Lato-Light.ttf");
+}
+
+#header
+{
+    position: fixed;
+    height: 10%;
+    width: 100%;
+    background-color: black;
+    left: 0;
+    top: 0;
+}
+
+h1, h2, p, label
+{
+    font-family: 'latoBlack';
+}
+
+h1
+{
+    font-size: 80px;
+    color: #FCF7F7;
+}
+
+h2
+{
+    font-size: 60px;
+    color: #FCF7F7;
+}
+
+p
+{
+    color: white;
+    text-align: center;
+}
+
+label
+{
+    color: white;
+    font-size: 15px;
+}
+
+#body_div
+{
+    background-image: url("../../lib/images/wallpaper_dota.jpg");
+}
+
+#header_contener
+{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button_header
+{
+    padding: 20px;
+    padding-right: 100px;
+}
+
+#main_logo
+{
+    float: left;
+    padding: 20px;
+}
+
+#choose_game_txt
+{
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    -webkit-text-stroke: 3px #FF5722;
+    text-align: center;
+}
+
+#input_pseudo_div
+{
+    text-align: center;
+    padding-bottom: 100px;
+}
+
+#input_pseudo
+{
+    width: 60%;
+    height: 50px;
+    font-size: 45px;
+    font-family: "latoLight";
+}
+
+#server_country_txt
+{
+    -webkit-text-stroke: 2px #FF5722;
+    text-align: center;
+}
+
+#select_server_div
+{
+    padding-left: 42%;
+}
+
+#select_server
+{
+    width: 300px;
+    font-family: "latoLight";
+    font-size: 20px;
+    color: white;
+    background-color: black
+}
+
+#submit_button_div
+{
+    padding-top: 50px;
+    text-align: center;
+}
+
+#submit_button
+{
+    font-family: "latoLight";
+    font-size: 25px;
+    height: 50px;
+    width: 100px;
+}
