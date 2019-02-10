@@ -1,0 +1,19 @@
+{
+  "name": "againstu",
+  "version": "1.0.0",
+  "description": "## What's againstU?",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theocerutti/againstU.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theocerutti/againstU/issues"
+  },
+  "homepage": "https://github.com/theocerutti/againstU#readme"
+}
