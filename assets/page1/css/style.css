@@ -5,15 +5,21 @@
 ** css style Antoine Maillard
 */
 
-/* @font-face
+@font-face
 {
     font-family: "latoBlack";
     src: url('../../lib/fonts/lato/Lato-Black.ttf');
-} */
+}
 
-h1, h2, p, label
+h1, h2, p, label, ul, a
 {
-    font-family: Tahoma, Geneva, sans-serif;
+    font-family: latoBlack, Tahoma, Geneva, sans-serif;
+    color: #FCF7F7;
+}
+
+a
+{
+    text-decoration: none;
 }
 
 #header
@@ -40,11 +46,18 @@ h1, h2, p, label
 
 .button_header
 {
+    text-decoration: none;
     padding: 15px;
     padding-right: 100px;
 }
 
-body{
+.button_header:hover
+{
+    text-decoration: underline;
+}
+
+body
+{
     background-image: url("../../lib/images/bg_lol.jpg");
 }
 
@@ -74,9 +87,4 @@ body{
 .input_network_id{
     height: 60px;
     font-size: 40px;
-}
-
-.select_server_item:hover
-{
-    background-color: red;
 }
