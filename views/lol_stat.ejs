@@ -17,11 +17,22 @@
 
     <body>
         <div id="header_stat">
-            <img src="<%=stat.data_acc.profileIconId%>" alt="Icon not found" class="header_stat_box" id="icon">
-            <div id="id_lvl" class="header_stat_box">
-                <p><%=stat.data_acc.name%></p>
-                <p>Level : <%=stat.data_acc.summonerLevel%></p>
+            <div id="first_stat">
+                <img src="<%=stat.data_acc.profileIconId%>" alt="Icon not found" id="icon">
+                <div id="id_lvl">
+                    <p id="text_id"><%=stat.data_acc.name%></p>
+                    <p id="text_lvl">Level : <%=stat.data_acc.summonerLevel%></p>
+                </div>
             </div>
+            
+            <div id="winrate_global">
+            </div>
+
+            <div id="best_champ">
+            </div>
+        </div>
+
+        <div id="body_matches">
         </div>
     </body>
 </html>

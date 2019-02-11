@@ -9,6 +9,7 @@ var stat = {
     "status": 0,
     "data_acc": {},
     "data_champ": [[], []],
+    "data_last": [],
     "data_match": {},
     "mtchs": [{}, {}, {}, {}, {}]
 };
@@ -63,15 +64,30 @@ app.post('/lol', async (req, res) => {
     else if (body.server === "North America")
         body.server = "na1";
     try {
-        const response = await axios.get('https://' + body.server + '.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + body.username + '?api_key=RGAPI-1797dde5-2bb3-4acc-9c10-1cf343b57646')
+        let response = await axios.get('https://' + body.server + '.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + body.username + '?api_key=RGAPI-1797dde5-2bb3-4acc-9c10-1cf343b57646')
         stat.status = response.status;
         stat.data_acc = response.data;
         stat.data_acc.profileIconId = 'http://avatar.leagueoflegends.com/' + body.server + '/' + body.username + '.png';
-        const response2 = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matchlists/by-account/' + response.data.accountId + '?api_key=RGAPI-1797dde5-2bb3-4acc-9c10-1cf343b57646')
+        let response2 = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matchlists/by-account/' + response.data.accountId + '?api_key=RGAPI-1797dde5-2bb3-4acc-9c10-1cf343b57646')
         stat.data_match = response2.data;
-        for (var i = 0; i < 5; i++) {
-            const response_mtch = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matches/' + stat.data_match.matches[i].gameId + '?api_key=RGAPI-1797dde5-2bb3-4acc-9c10-1cf343b57646')
+        for (let i = 0; i < 5; i++) {
+            let response_mtch = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matches/' + stat.data_match.matches[i].gameId + '?api_key=RGAPI-1797dde5-2bb3-4acc-9c10-1cf343b57646')
             stat.mtchs[i] = response_mtch;
+        }
+        let response3 = await axios.get('https://' + body.server + '.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/' + stat.data_acc.id + '?api_key=RGAPI-1797dde5-2bb3-4acc-9c10-1cf343b57646')
+        let stock = [0, 0, 0];
+        for (let w = 0, x = 0; w < 3; w++) {
+            for (let i = 0; i < response3.data.length; i++) {
+                if (response3.data[i].lastPlayTime > stock[w]) {
+                    stock[w] = response3.data[i].championId;
+                    x = i;
+                }
+                if (i === response3.data.length - 1)
+                    response3.data[x].lastPlayTime = 0;
+            }
+        }
+        for (let i = 0; i < 3; i++) {
+            
         }
     } catch (error) { console.log(error) }
     if (stat.status === 200)
