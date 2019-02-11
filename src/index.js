@@ -8,6 +8,7 @@ var BigNumber = require('bignumber.js')
 var stat = {
     "status": 0,
     "data_acc": {},
+    "data_champ": [[], []],
     "data_match": {},
     "mtchs": [{}, {}, {}, {}, {}]
 };
@@ -53,6 +54,10 @@ app.get('/index', (req, res) => {
 app.post('/lol', async (req, res) => {
     const { body } = req;
     body.username = encodeURIComponent(body.username);
+    stat.data_champ[0] = Object.keys(champions);
+    for (key in champions) {
+        stat.data_champ[1].push(champions[key]);
+    }
     if (body.server === "EU West")
         body.server = "euw1";
     else if (body.server === "North America")
