@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>DOTA - {{stat_dota.data_acc.name}}</title>
+    <title>DOTA - {{ stat_dota.username }}</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="assets/dota_stat/css/style.css">
 </head>
-
 <header id="header">
     <a href="index"><img src="assets/lib/images/againstu.png" alt="main_logo" id="main_logo" /></a>
     <div id="header_contener">
@@ -17,15 +15,14 @@
         </a>
     </div>
 </header>
-
 <body>
     <div id="header_stat">
-        <img src="{{stat_dota.data_acc.profileIconId}}" alt="Icon not found" class="header_stat_box" id="icon">
         <div id="id_lvl" class="header_stat_box">
-            <p>{{stat_dota.data_acc.name}}</p>
-            <p>Level : {{stat_dota.data_acc.summonerLevel}}</p>
+            <p>Username: {{ stat_dota.username }}</p>
+            <p>SteamID64 : {{ stat_dota.id64 }}</p>
+            <p>SteamID32 : {{ stat_dota.id32 }}</p>
+            <p>Status: {{ stat_dota.success }}</p>
         </div>
     </div>
 </body>
-
 </html>
