@@ -74,8 +74,8 @@ app.post('/lol', async (req, res) => {
         res.send('Player Found!');
 })
 
-app.get('/dota', (req, res) => {
-    res.render('dota')
+app.get('/lol', (req, res) => {
+    res.render('lol')
 })
 
 app.post('/dota_stat', async (req, res) => {
@@ -103,8 +103,16 @@ app.post('/dota_stat', async (req, res) => {
         res.send('Player found')
 })
 
+app.get('/dota', (req, res) => {
+    res.render('dota')
+})
+
 app.get('/dota_stat', (req, res) => {
     res.render('dota_stat', { stat_dota })
+})
+
+app.get('/lol_stat', (req, res) => {
+    res.render('lol_stat', { stat });
 })
 
 app.use((req, res, next) => {
