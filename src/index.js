@@ -8,14 +8,15 @@ const express = require('express');
 const axios = require('axios');
 const expressHbs = require('express-hbs');
 const bodyParser = require('body-parser');
-// const $ = require('jquery');
 
-// $.getScript('get_api_lol.js');
 var stat = {
     "status": 0,
     "data_acc": {},
-    "data_match": {}
+    "data_match": {},
+    "mtchs": [{}, {}, {}, {}, {}]
 };
+
+var champions = {};
 
 const app = express();
 
@@ -42,24 +43,24 @@ app.get('/index', (req, res) => {
 app.post('/lol', async (req, res) => {
     const { body } = req;
     body.username = encodeURIComponent(body.username);
-    if (body.server === "EU West") {
-        await axios.get('https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + body.username + '?api_key=RGAPI-1998d3e5-13cf-4d4c-a321-bd1cc4733a81')
-        .then((response) => {
-            stat.status = response.status;
-            stat.data_acc = response.data;
-            stat.data_acc.profileIconId = "http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/" + stat.data_acc.profileIconId + ".png";
-        });
-        if (stat.status === 200)
-            res.send('Player found');
-    } else if (body.server === "North America") {
-        await axios.get('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + body.username + '?api_key=RGAPI-1998d3e5-13cf-4d4c-a321-bd1cc4733a81')
-        .then((response) => {
-            stat.status = response.status;
-            stat.data_acc = response.data;
-        });
-        if (stat.status === 200)
-            res.send('Player found');
-    }
+    if (body.server === "EU West")
+        body.server = "euw1";
+    else if (body.server === "North America")
+        body.server = "na1";
+    try {
+        const response = await axios.get('https://' + body.server + '.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + body.username + '?api_key=RGAPI-1797dde5-2bb3-4acc-9c10-1cf343b57646')
+        stat.status = response.status;
+        stat.data_acc = response.data;
+        stat.data_acc.profileIconId = 'http://avatar.leagueoflegends.com/' + body.server + '/' + body.username + '.png';
+        const response2 = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matchlists/by-account/' + response.data.accountId + '?api_key=RGAPI-1797dde5-2bb3-4acc-9c10-1cf343b57646')
+        stat.data_match = response2.data;
+        for (var i = 0; i < 5; i++) {
+            const response_mtch = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matches/' + stat.data_match.matches[i].gameId + '?api_key=RGAPI-1797dde5-2bb3-4acc-9c10-1cf343b57646')
+            stat.mtchs[i] = response_mtch;
+        }
+    } catch (error) { console.log(error) }
+    if (stat.status === 200)
+        res.send('Player Found!');
 })
 
 // ---------------------------------------------------------
@@ -87,5 +88,14 @@ app.get('/dota', (req, res) => {
 app.use((req, res, next) => {
     res.sendStatus(404).statusMessage;
 })
+
+/*
+** Get JSON file about champions LOL
+*/
+
+axios.get('http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json')
+.then(response => { champions = response.data.data })
+
+// ---------------------------------------------------------
 
 app.listen(8080);
