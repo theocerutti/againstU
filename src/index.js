@@ -31,8 +31,6 @@ function to32(steamId64) {
 }
 var champions = {};
 
-const app = express();
-
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/../views/');
 app.use(expressHbs.express4());
