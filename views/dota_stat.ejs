@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--<title>DOTA - {{ stat_dota.username }}</title>-->
+        <title>DOTA - <%=stat_dota.username%></title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="assets/dota_stat/css/style.css">
     </head>
@@ -16,12 +16,89 @@
         </div>
     </header>
     <body>
-        <!--<img src={{ stat_dota.PlayerSummaries.avatarfull }} alt="avatar_not_found"/>
-        <p>Username: {{ stat_dota.username }}</p>
-        <p>Personaname: {{ stat_dota.PlayerSummaries.personaname }}</p>
-        <p>SteamID64 : {{ stat_dota.id64 }}</p>
-        <p>SteamID32 : {{ stat_dota.id32 }}</p>
-        <p>Online/Offline: {{ stat_dota.PlayerSummaries.personastate }}</p>
-        <p>Last log off: {{ stat_dota.PlayerSummaries.lastlogoff }}</p>-->
+        <div id="header_overview_div">
+            <div id="overview_div">
+                <img src="<%=stat_dota.PlayerSummaries.avatarfull%>" alt="avatar_not_found" />
+                <p>Nickname: <%=stat_dota.PlayerSummaries.personaname%></p>
+                <p>Last login: <%= stat_dota.date_last_login%></p>
+            </div>
+            <div id="matches_win">
+                <h2>Heroes most played:</h2>
+                <img src="<%=stat_dota.PlayerSummaries.avatarfull%>" alt="heroe1_not_found" />
+                <p>HeroeName1</p>
+                <img src="<%=stat_dota.PlayerSummaries.avatarfull%>" alt="heroe2_not_found" />
+                <p>HeroeName2</p>
+                <img src="<%=stat_dota.PlayerSummaries.avatarfull%>" alt="heroe3_not_found" />
+                <p>HeroeName3</p>
+            </div>
+            <div id="pourcentage_ranking">
+                <img src="<%=stat_dota.PlayerSummaries.avatarfull%>" alt="ranking_picture_not_found" />
+                <p>60% of victories</p>
+            </div>
+            <div id="steam_info_player_div">
+                <p>SteamID64 : <%=stat_dota.id64%></p>
+                <p>SteamID32 : <%=stat_dota.id32%></p>
+                <p>ProfileURL: <%=stat_dota.PlayerSummaries.profileurl%></p>
+                <%switch (stat_dota.PlayerSummaries.personastate) {
+                    case 0:%>
+                        <p>Status: offline</p>
+                    <%break;
+                    case 1:%>
+                        <p>Status: online</p>
+                    <%break;
+                    case 2:%>
+                        <p>Status: Busy</p>
+                    <%break;
+                    case 3:%>
+                        <p>Status: Away</p>
+                    <%break;
+                    case 4:%>
+                        <p>Status: Snooze</p>
+                    <%break;
+                    case 5:%>
+                        <p>Status: Looking to trade</p>
+                    <%break;
+                    case 6:%>
+                        <p>Status: Looking to play</p>
+                    <%break;
+                    default:%>
+                        <p>Status: Unknown</p>
+                    <%break;
+                } %>
+            </div>
+        </div>
+        <% for (var n_matches = 1; n_matches <= 5; n_matches++) { %>
+            <h2>Matches N°<%=n_matches%></h2>
+            <% for (var id_team = 0; id_team < 2; id_team++) { %>
+                <h3>Victoire ou défaite ?</h3>
+                <h4>Team: <%= id_team%></h4>
+                    <table id="matches_table">
+                        <tr>
+                            <th>Heroe</th>
+                            <th>Lane</th>
+                            <th>K</th>
+                            <th>D</th>
+                            <th>A</th>
+                            <th>Gold</th>
+                            <th>Total DMG</th>
+                            <th>Total HEALTH</th>
+                            <th>Items</th>
+                        </tr>
+                        <% for (var n_player = 0; n_player < 5; n_player++) { %>
+                            <tr>
+                                <td>ImageHero + NameHero</td>
+                                <td>LaneName</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0k</td>
+                                <td>0k</td>
+                                <td>0k</td>
+                                <td>5 x imagesItems</td>
+                            </tr>
+                        <% } %>
+                    </table>
+            <% } %>
+        <% } %>
     </body>
 </html>

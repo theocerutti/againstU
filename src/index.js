@@ -4,6 +4,7 @@ const ejs = require('ejs')
 const bodyParser = require('body-parser')
 const app = express()
 var BigNumber = require('bignumber.js')
+var moment = require('moment')
 
 var stat = {
     "status": 0,
@@ -20,7 +21,9 @@ var stat_dota = {
     server: 'not found',
     success: -1,
     PlayerSummaries: {},
-    FriendList: {}
+    RecentMatches: {},
+    FriendList: {},
+    date_last_login: 'not found'
 }
 
 var convert = new BigNumber('76561197960265728');
@@ -29,6 +32,7 @@ function to32(steamId64) {
     var steamId32 = steamId64.minus(convert);
     return steamId32.toString();
 }
+
 var champions = {};
 
 app.set('view engine', 'ejs');
@@ -93,8 +97,10 @@ app.post('/dota_stat', async (req, res) => {
         stat_dota.id32 = to32(stat_dota.id64)
         const res2_dota = await axios.get('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + stat_dota.api_key + '&steamids=' + stat_dota.id64)
         stat_dota.PlayerSummaries = res2_dota.data.response.players[0]
-        const res3_dota = await axios.get('http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=' + stat_dota.api_key + '&steamid=' + stat_dota.id64 + '&relationship=friend')
-        stat_dota.FriendList = res3_dota.data
+        var date = moment.unix(stat_dota.PlayerSummaries.lastlogoff).format("dddd, hh:mm:ss")
+        stat_dota.date_last_login = date
+        const res3_dota = await axios.get('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=' + stat_dota.api_key + '&account_id=' + stat_dota.id32 + '&matches_requested=5')
+        stat_dota.RecentMatches = res3_dota.data
     } else {
         console.log("Player not found!!")
     }
