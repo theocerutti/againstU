@@ -5,6 +5,13 @@ const bodyParser = require('body-parser')
 const app = express()
 var BigNumber = require('bignumber.js')
 
+var stat = {
+    "status": 0,
+    "data_acc": {},
+    "data_match": {},
+    "mtchs": [{}, {}, {}, {}, {}]
+};
+
 var stat_dota = {
     api_key: '291F6255D9427DB13DEEC82679CBFC87',
     id64: 0,
@@ -22,19 +29,51 @@ function to32(steamId64) {
     var steamId32 = steamId64.minus(convert);
     return steamId32.toString();
 }
+var champions = {};
 
-app.set('view engine', 'hbs')
-app.set('views', __dirname + '/../views')
-app.use(expressHbs.express4())
-app.use("/assets", express.static("./assets"))
-app.use(bodyParser.json())
+const app = express();
+
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/../views/');
+app.use(expressHbs.express4());
+app.use('/assets', express.static('./assets'));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     res.redirect('/index')
 })
 
 app.get('/index', (req, res) => {
-    res.render('index')
+    res.render('index');
+})
+
+/*
+** User send request on an account
+** Get the user and the server.
+** Use axios to get API's data and send them at response.
+*/
+
+app.post('/lol', async (req, res) => {
+    const { body } = req;
+    body.username = encodeURIComponent(body.username);
+    if (body.server === "EU West")
+        body.server = "euw1";
+    else if (body.server === "North America")
+        body.server = "na1";
+    try {
+        const response = await axios.get('https://' + body.server + '.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + body.username + '?api_key=RGAPI-1797dde5-2bb3-4acc-9c10-1cf343b57646')
+        stat.status = response.status;
+        stat.data_acc = response.data;
+        stat.data_acc.profileIconId = 'http://avatar.leagueoflegends.com/' + body.server + '/' + body.username + '.png';
+        const response2 = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matchlists/by-account/' + response.data.accountId + '?api_key=RGAPI-1797dde5-2bb3-4acc-9c10-1cf343b57646')
+        stat.data_match = response2.data;
+        for (var i = 0; i < 5; i++) {
+            const response_mtch = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matches/' + stat.data_match.matches[i].gameId + '?api_key=RGAPI-1797dde5-2bb3-4acc-9c10-1cf343b57646')
+            stat.mtchs[i] = response_mtch;
+        }
+    } catch (error) { console.log(error) }
+    if (stat.status === 200)
+        res.send('Player Found!');
 })
 
 app.get('/dota', (req, res) => {
@@ -74,4 +113,13 @@ app.use((req, res, next) => {
     res.sendStatus(404).statusMessage
 })
 
-app.listen(8080)
+/*
+** Get JSON file about champions LOL
+*/
+
+axios.get('http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json')
+.then(response => { champions = response.data.data })
+
+// ---------------------------------------------------------
+
+app.listen(8080);
