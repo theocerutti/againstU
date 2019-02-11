@@ -1,12 +1,33 @@
-/*
-** stylesheet for lol_stat
-** page.
-**
-*/
+@font-face {
+    font-family: "latoBlack";
+    src: url("../../lib/fonts/lato/Lato-Black.ttf");
+}
 
-h1, h2, p, label
+@font-face {
+    font-family: "marketDeco";
+    src: url("../../lib/fonts/market_deco/Market_Deco.ttf");
+}
+
+h1, h2, p, label, a
 {
-    font-family: Tahoma, Geneva, sans-serif;
+    font-family: latoBlack, Geneva, sans-serif;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: white;
 }
 
 #header
@@ -60,4 +81,9 @@ h1, h2, p, label
 {
     padding-top: 10px;
     width: 10%;
+}
+
+body
+{
+    padding: 200px;
 }

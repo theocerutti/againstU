@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>DOTA - {{ stat_dota.username }}</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="assets/dota_stat/css/style.css">
-</head>
-<header id="header">
-    <a href="index"><img src="assets/lib/images/againstu.png" alt="main_logo" id="main_logo" /></a>
-    <div id="header_contener">
-        <a href="lol"><img src="assets/lib/images/lol.png" alt="lol_logo" class="button_header" /></a>
-        <a href="dota"><img src="assets/lib/images/dota.png" alt="header_logo" class="button_header" /></a>
-        <a href="about">
-            <ul class="button_header">About us</ul>
-        </a>
-    </div>
-</header>
-<body>
-    <div id="header_stat">
-        <div id="id_lvl" class="header_stat_box">
-            <p>Username: {{ stat_dota.username }}</p>
-            <p>SteamID64 : {{ stat_dota.id64 }}</p>
-            <p>SteamID32 : {{ stat_dota.id32 }}</p>
-            <p>Status: {{ stat_dota.success }}</p>
+    <head>
+        <title>DOTA - {{ stat_dota.username }}</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="assets/dota_stat/css/style.css">
+    </head>
+    <header id="header">
+        <a href="index"><img src="assets/lib/images/againstu.png" alt="main_logo" id="main_logo" /></a>
+        <div id="header_contener">
+            <a href="lol"><img src="assets/lib/images/lol.png" alt="lol_logo" class="button_header" /></a>
+            <a href="dota"><img src="assets/lib/images/dota.png" alt="header_logo" class="button_header" /></a>
+            <a href="about">
+                <ul class="button_header">About us</ul>
+            </a>
         </div>
-    </div>
-</body>
+    </header>
+    <body>
+        <img src={{ stat_dota.PlayerSummaries.avatarfull }} alt="avatar_not_found"/>
+        <p>Username: {{ stat_dota.username }}</p>
+        <p>Personaname: {{ stat_dota.PlayerSummaries.personaname }}</p>
+        <p>SteamID64 : {{ stat_dota.id64 }}</p>
+        <p>SteamID32 : {{ stat_dota.id32 }}</p>
+        <p>Online/Offline: {{ stat_dota.PlayerSummaries.personastate }}</p>
+        <p>Last log off: {{ stat_dota.PlayerSummaries.lastlogoff }}</p>
+    </body>
 </html>
