@@ -1,6 +1,6 @@
 const express = require('express')
 const axios = require('axios')
-const expressHbs = require('express-hbs')
+const ejs = require('ejs')
 const bodyParser = require('body-parser')
 const app = express()
 var BigNumber = require('bignumber.js')
@@ -31,9 +31,8 @@ function to32(steamId64) {
 }
 var champions = {};
 
-app.set('view engine', 'hbs');
+app.set('view engine', 'ejs');
 app.set('views', __dirname + '/../views/');
-app.use(expressHbs.express4());
 app.use('/assets', express.static('./assets'));
 app.use(bodyParser.json());
 
