@@ -3,6 +3,7 @@
     <head>
         <title>DOTA - <%=stat_dota.username%></title>
         <meta charset="utf-8">
+        <link rel="icon" type="image/png" href="/assets/lib/icons/favicon.png"/>
         <link rel="stylesheet" href="assets/dota_stat/css/style.css">
     </head>
     <header id="header">
@@ -78,40 +79,48 @@
                 } %>
             </div>
         </div>
-        <div id="matches_div">
+        <div id="all_matches_div">
             <span>
                 <% for (var n_matches = 1; n_matches <= 5; n_matches++) { %>
-                    <h2>Matches N°<%=n_matches%></h2>
-                    <% for (var id_team = 0; id_team < 2; id_team++) { %>
-                        <h3>Victoire ou défaite ?</h3>
-                            <table id="matches_table">
-                                <caption>Team: <%= id_team%></caption>
-                                <tr>
-                                    <th>Heroe</th>
-                                    <th>Lane</th>
-                                    <th>K</th>
-                                    <th>D</th>
-                                    <th>A</th>
-                                    <th>Gold</th>
-                                    <th>Total DMG</th>
-                                    <th>Total HEALTH</th>
-                                    <th>Items</th>
-                                </tr>
-                                <% for (var n_player = 0; n_player < 5; n_player++) { %>
-                                    <tr>
-                                        <td>ImageHero + NameHero</td>
-                                        <td>LaneName</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0k</td>
-                                        <td>0k</td>
-                                        <td>0k</td>
-                                        <td>5 x imagesItems</td>
-                                    </tr>
-                                <% } %>
-                            </table>
-                    <% } %>
+                    <div id="one_match_div">
+                        <h2 class="txt">Matches N°<%=n_matches%> (id: match_id)</h2>
+                        <% for (var id_team = 0; id_team < 2; id_team++) { %>
+                            <h3 class="txt">Victoire ou défaite ?</h3>
+                            <div id="match_table">
+                                <table>
+                                    <caption class="txt">Team: <%= id_team%></caption>
+                                    <thead>
+                                        <tr>
+                                            <th>Heroe</th>
+                                            <th>Lane</th>
+                                            <th>K</th>
+                                            <th>D</th>
+                                            <th>A</th>
+                                            <th>Gold</th>
+                                            <th>Total DMG</th>
+                                            <th>Total HEALTH</th>
+                                            <th>Items</th>
+                                        </tr>
+                                    </thead>
+                                    <% for (var n_player = 0; n_player < 5; n_player++) { %>
+                                        <tbody>
+                                            <tr>
+                                                <td>ImageHero + NameHero</td>
+                                                <td>LaneName</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0k</td>
+                                                <td>0k</td>
+                                                <td>0k</td>
+                                                <td>5 x imagesItems</td>
+                                            </tr>
+                                        </tbody>
+                                    <% } %>
+                                </table>
+                            </div>
+                        <% } %>
+                    </div>
                 <% } %>
             </span>
         </div>

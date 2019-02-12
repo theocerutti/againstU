@@ -22,6 +22,7 @@ var stat_dota = {
     success: -1,
     PlayerSummaries: {},
     RecentMatches: {},
+    RecentMatchesDetail: [],
     FriendList: {},
     date_last_login: 'not found'
 }
@@ -101,6 +102,11 @@ app.post('/dota_stat', async (req, res) => {
         stat_dota.date_last_login = date
         const res3_dota = await axios.get('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=' + stat_dota.api_key + '&account_id=' + stat_dota.id32 + '&matches_requested=5')
         stat_dota.RecentMatches = res3_dota.data
+        for (var match = 0; match < 5; match++) {
+            var res4_dota = await axios.get('http://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/v001?key=' + stat_dota.api_key + '&match_id=' + stat_dota.RecentMatches.result.matches[match].match_id)
+            stat_dota.RecentMatchesDetail[match] = res4_dota.data
+            console.log(stat_dota.RecentMatchesDetail[match])
+        }
     } else {
         console.log("Player not found!!")
     }
