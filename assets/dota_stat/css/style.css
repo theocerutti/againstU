@@ -58,32 +58,83 @@ a:visited {
     padding-right: 100px;
 }
 
-#header_stat
-{
+/*
+    HEADER INFO
+*/
+
+#header_overview_div {
+    padding-top: 150px;
     display: flex;
-    height: 200px;
-    margin-top: 120px;
-    background-color: yellow;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.header_stat_box
-{
+#overview_div {
+    display: flex;
     background-color: red;
+    border: 3px solid gray;
 }
 
-#icon
-{
-    height: 150px;
-    padding: 25px;
+#overview_img {
+    padding: 30px;
+    height: 60%;
+    width: 40%;
+    margin: auto;
 }
 
-#id_lvl
-{
-    padding-top: 10px;
-    width: 10%;
+#overview_div_info {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-body
-{
-    padding: 200px;
+#matches_win_div {
+    background-color: blue;
+    border: 3px solid gray;
+}
+
+#heroes_most_played_title {
+    text-align: center;
+}
+.fig_heroe_name_most_played {
+    text-align: center;
+}
+
+#matches_win_sub_div {
+    display: flex;
+    justify-content: space-around;
+}
+
+#pourcentage_ranking_div {
+    background-color: yellow;
+    border: 3px solid gray;
+    padding: 20px;
+}
+
+#steam_info_player_div {
+    background-color: green;
+    border: 3px solid gray;
+    border-top: 0px;
+    padding: 20px;
+}
+
+/*
+    MATCHES
+*/
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid black;
+}
+
+caption {
+    box-align: left;
+}
+
+#matches_div {
+    display: flex;
+    justify-content: center;
 }
