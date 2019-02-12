@@ -168,3 +168,18 @@ caption {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+#all_item_div {
+    display: flex;
+}
+
+#img_hero {
+    border-radius: 20%;
+}
+
+.img_item {
+    border-radius: 20%;
+    padding-left: 4px;
+    width: 40px;
+    height: 40px;
+}
