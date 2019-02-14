@@ -41,6 +41,10 @@ a
     text-decoration: none;
 }
 
+a:hover {
+    text-decoration: underline;
+}
+
 #body_div
 {
     background-image: url("../../lib/images/wallpaper_dota.jpg");
@@ -68,6 +72,7 @@ a
 {
     float: left;
     padding: 20px;
+    height: 60px;
 }
 
 #choose_game_txt
@@ -86,7 +91,7 @@ a
     padding-bottom: 100px;
 }
 
-#input_pseudo
+#input_steamid
 {
     width: 60%;
     height: 50px;
@@ -94,29 +99,8 @@ a
     font-family: "latoLight";
 }
 
-#server_country_txt
-{
-    -webkit-text-stroke: 2px #FF5722;
-    text-align: center;
-}
-
-#select_server_div
-{
-    padding-left: 42%;
-}
-
-#select_server
-{
-    width: 300px;
-    font-family: "latoLight";
-    font-size: 20px;
-    color: white;
-    background-color: black
-}
-
 #submit_button_div
 {
-    padding-top: 50px;
     text-align: center;
 }
 
@@ -126,4 +110,19 @@ a
     font-size: 25px;
     height: 50px;
     width: 100px;
+}
+
+#steamid_div {
+    padding-top: 30px;
+    text-align: center;
+}
+
+#find_your_steam_id {
+    -webkit-text-stroke: 3px #FF5722;
+}
+
+#steamid_a {
+    color: #4DC4A0;
+    text-decoration: underline;
+    font-size: 50px;
 }
