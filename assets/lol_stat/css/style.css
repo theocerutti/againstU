@@ -4,9 +4,20 @@
 **
 */
 
-h1, h2, p, label
+@font-face
 {
-    font-family: Tahoma, Geneva, sans-serif;
+    font-family: "latoBlack";
+    src: url("../../lib/fonts/lato/Lato-Black.ttf");
+}
+
+body
+{
+    background-color: #000127;
+}
+
+h1, h2, h3, p, label
+{
+    font-family: latoBlack;
 }
 
 #header
@@ -43,12 +54,24 @@ h1, h2, p, label
     display: flex;
     height: 200px;
     margin-top: 120px;
-    background-color: yellow;
+    justify-content: center;
+    border: solid #cccc00 1px;
+    background-color: #003366;
 }
 
-.header_stat_box
+#body_matches
 {
-    background-color: red;
+    margin: auto;
+    margin-top: 10px;
+    background-color: #032a52;
+    border: solid #cccc00 1px;
+    width: 50%;
+}
+
+#first_stat
+{
+    width: 33%;
+    display: flex;
 }
 
 #icon
@@ -60,5 +83,156 @@ h1, h2, p, label
 #id_lvl
 {
     padding-top: 10px;
-    width: 10%;
+}
+
+#text_id
+{
+    color: #cccc00;
+    font-size: 35px;
+}
+
+#text_lvl
+{
+    color: #cccc00;
+    font-size: 30px;
+}
+
+#winrate_global
+{
+    width: 33%;
+    border: solid #cccc00 1px;
+    background-color: #032a52;
+}
+
+#best_champ
+{
+    width: 33%;
+    line-height: 5px;
+    border: solid #cccc00 1px;
+    background-color: #032a52;
+}
+
+#possible_pick
+{
+    display: flex;
+    color: #cccc00;
+    justify-content: center;
+}
+
+.last_three
+{
+    padding-left: 10px; 
+    padding-right: 10px;
+}
+
+#pp_text
+{
+    font-size: 25px;
+}
+
+#winrate_global
+{
+    display: flex;
+    justify-content: center;
+}
+
+#cup
+{
+    width: 120px;
+    height: 60%;
+    padding-top: 40px;
+    padding-left: 10px; 
+    padding-right: 10px;
+}
+
+#winrate_text
+{
+    font-size: 65px;
+    color: #cccc00;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#body_matches
+{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+.match_info
+{
+    display: flex;
+    justify-content: space-between;
+    border: solid black 2px;
+}
+
+img
+{
+    border-radius: 5%;
+}
+
+.champ_played
+{
+    border: solid #cccc00 2px;
+    margin: 25px;
+    margin-bottom: 0px;
+}
+
+.mode_g
+{
+    margin: auto;
+    text-align: center;
+}
+
+.kda
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#lastg
+{
+    color: #cccc00;
+    margin: auto;
+    padding: 20px;
+}
+
+.items
+{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.items_line1
+{
+    display: flex;
+}
+
+.items_line2
+{
+    display: flex;
+}
+
+.item_icon
+{
+    padding: 5px;
+    border: solid #cccc00 1px;
+}
+
+.time_lvl_minion
+{
+    padding-top: 25px;
+}
+
+.stat_damage
+{
+    padding-top: 40px;
+}
+
+.kda_text
+{
+    line-height: 0px;
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--<title>LOL - {{stat.data_acc.name}}</title>-->
+        <title>LOL - <%=stat.data_acc.name%></title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="assets/lol_stat/css/style.css">
         <link rel="icon" type="image/png" href="/assets/lib/icons/icon_againstu.png"/>
@@ -17,12 +17,131 @@
     </header>
 
     <body>
-        <!--<div id="header_stat">
-            <img src="{{stat.data_acc.profileIconId}}" alt="Icon not found" class="header_stat_box" id="icon">
-            <div id="id_lvl" class="header_stat_box">
-                <p>{{stat.data_acc.name}}</p>
-                <p>Level : {{stat.data_acc.summonerLevel}}</p>
+        <div id="header_stat">
+            <div id="first_stat">
+                <img src="<%=stat.data_acc.profileIconId%>" alt="Icon not found" id="icon">
+                <div id="id_lvl">
+                    <p id="text_id"><%=stat.data_acc.name%></p>
+                    <p id="text_lvl">Level : <%=stat.data_acc.summonerLevel%></p>
+                </div>
             </div>
-        </div>-->
+            
+            <div id="best_champ">
+                <div id="possible_pick">
+                    <p id="pp_text">Possible pick:</p>
+                </div>
+
+                <div id="possible_pick">
+                <%for (let i = 0; i < 3; i++) {%>
+                    <img src="<%=stat.data_last[i]%>" alt="Icon not found" class="last_three">
+                <%}%>
+                </div>
+            </div>
+
+            <div id="winrate_global">
+                <img src="assets/lib/icons/cup.png" alt="cup img" id="cup">
+                <p id="winrate_text"><%=stat.winrate%>%</p>
+            </div>
+        </div>
+
+        <div id="body_matches">
+            <h3 id="lastg">Last game played : </h3>
+            <%for (let i = 0; i < stat.match_info.length; i++) {%>
+                <%if (stat.match_info[i].win === "WIN") {%>
+                    <div class="match_info" style="background-color: #2d862d;">
+                        <div class="icon_mode">
+                            <img src="<%=stat.match_info[i].img%>" alt="Icon Champion" class="champ_played">
+                            <p class="mode_g"><%=stat.match_info[i].mode%></p>
+                        </div>
+                        <div class="time_lvl_minion">
+                            <p class="gametime"><%=Math.round(stat.match_info[i].gameTime / 60)%> minutes</p>
+                            <p>lvl: <%=stat.match_info[i].level%></p>
+                            <p>Minions killed : <%=stat.match_info[i].minions%></p>
+                        </div>
+                        <div class="stat_damage">
+                            <p>Damage Dealt: <%=stat.match_info[i].damageDealt%></p>
+                            <p>Damage Taken: <%=stat.match_info[i].damageTaken%></p>
+                        </div>
+                        <div class="kda">
+                            <p class="kda_text">K: <%=stat.match_info[i].K%> / D: <%=stat.match_info[i].D%> / A: <%=stat.match_info[i].A%></p>
+                            <p class="kda_text">Ratio KDA: <%=Math.round(stat.match_info[i].KDA * 10) / 10%></p>
+                        </div>
+                        
+                        <div class="items">
+                                <div class="items_line1">
+                                        <%if (stat.match_info[i].item0 !== 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/0.png') {%>
+                                            <img src="<%=stat.match_info[i].item0%>" alt="item0" class="item_icon">
+                                        <%}%>
+                                        <%if (stat.match_info[i].item1 !== 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/0.png') {%>
+                                            <img src="<%=stat.match_info[i].item1%>" alt="item1" class="item_icon">
+                                        <%}%>
+                                        <%if (stat.match_info[i].item2 !== 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/0.png') {%>
+                                            <img src="<%=stat.match_info[i].item2%>" alt="item2" class="item_icon">
+                                        <%}%>
+                                    </div>
+                                    
+                                    <div class="items_line2">
+                                        <%if (stat.match_info[i].item3 !== 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/0.png') {%>
+                                            <img src="<%=stat.match_info[i].item3%>" alt="item3" class="item_icon">
+                                        <%}%>
+                                        <%if (stat.match_info[i].item4 !== 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/0.png') {%>
+                                            <img src="<%=stat.match_info[i].item4%>" alt="item4" class="item_icon">
+                                        <%}%>
+                                        <%if (stat.match_info[i].item5 !== 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/0.png') {%>
+                                            <img src="<%=stat.match_info[i].item5%>" alt="item5" class="item_icon">
+                                        <%}%>
+                                    </div>
+                        </div>
+                    </div>
+                <%} else {%>
+                    <div class="match_info" style="background-color: #990000;">
+                        <div class="icon_mode">
+                            <img src="<%=stat.match_info[i].img%>" alt="Icon Champion" class="champ_played">
+                            <p class="mode_g"><%=stat.match_info[i].mode%></p>
+                        </div>
+                        <div class="time_lvl_minion">
+                            <p class="gametime"><%=Math.round(stat.match_info[i].gameTime / 60)%> minutes</p>
+                            <p>lvl: <%=stat.match_info[i].level%></p>
+                            <p>Minions killed : <%=stat.match_info[i].minions%></p>
+                        </div>
+                        <div class="stat_damage">
+                            <p>Damage Dealt: <%=stat.match_info[i].damageDealt%></p>
+                            <p>Damage Taken: <%=stat.match_info[i].damageTaken%></p>
+                        </div>
+                        
+                        <div class="kda">
+                            <p class="kda_text">K: <%=stat.match_info[i].K%> / D: <%=stat.match_info[i].D%> / A: <%=stat.match_info[i].A%></p>
+                            <p class="kda_text">Ratio KDA: <%=Math.round(stat.match_info[i].KDA * 10) / 10%></p>
+                        </div>
+
+                        <div class="items">
+                                <div class="items_line1">
+                                        <%if (stat.match_info[i].item0 !== 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/0.png') {%>
+                                            <img src="<%=stat.match_info[i].item0%>" alt="item0" class="item_icon">
+                                        <%}%>
+                                        <%if (stat.match_info[i].item1 !== 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/0.png') {%>
+                                            <img src="<%=stat.match_info[i].item1%>" alt="item1" class="item_icon">
+                                        <%}%>
+                                        <%if (stat.match_info[i].item2 !== 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/0.png') {%>
+                                            <img src="<%=stat.match_info[i].item2%>" alt="item2" class="item_icon">
+                                        <%}%>
+                                    </div>
+                                    
+                                    <div class="items_line2">
+                                        <%if (stat.match_info[i].item3 !== 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/0.png') {%>
+                                            <img src="<%=stat.match_info[i].item3%>" alt="item3" class="item_icon">
+                                        <%}%>
+                                        <%if (stat.match_info[i].item4 !== 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/0.png') {%>
+                                            <img src="<%=stat.match_info[i].item4%>" alt="item4" class="item_icon">
+                                        <%}%>
+                                        <%if (stat.match_info[i].item5 !== 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/0.png') {%>
+                                            <img src="<%=stat.match_info[i].item5%>" alt="item5" class="item_icon">
+                                        <%}%>
+                                    </div>
+                            </div>
+                    </div>
+                <%}%>
+            <%}%>
+        </div>
     </body>
 </html>
