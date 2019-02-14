@@ -4,6 +4,12 @@
 **
 */
 
+@font-face
+{
+    font-family: "latoBlack";
+    src: url("../../lib/fonts/lato/Lato-Black.ttf");
+}
+
 body
 {
     background-color: #000127;
@@ -11,7 +17,7 @@ body
 
 h1, h2, h3, p, label
 {
-    font-family: Tahoma, Geneva, sans-serif;
+    font-family: latoBlack;
 }
 
 #header
@@ -169,6 +175,13 @@ img
 {
     border: solid #cccc00 2px;
     margin: 25px;
+    margin-bottom: 0px;
+}
+
+.mode_g
+{
+    margin: auto;
+    text-align: center;
 }
 
 .kda

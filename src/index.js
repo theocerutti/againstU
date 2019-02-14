@@ -68,6 +68,7 @@ async function fill_obj(i, response_mtch)
         "idChamp": 0,
         "img": "",
         "win": "",
+        "mode": "",
         "gameTime": 0,
         "level": 0,
         "minions": 0,
@@ -95,6 +96,7 @@ async function fill_obj(i, response_mtch)
                 stat.winrate += 1;
             } else
                 obj.win = "LOSE";
+            obj.mode = response_mtch.data.gameMode;
             obj.gameTime = response_mtch.data.gameDuration;
             obj.level = response_mtch.data.participants[w].stats.champLevel;
             obj.minions = response_mtch.data.participants[w].stats.totalMinionsKilled;
@@ -117,6 +119,7 @@ async function fill_obj(i, response_mtch)
 }
 
 app.post('/lol', async (req, res) => {
+    stat.match_info = [];
     const { body } = req;
     stat.winrate = 0;
     body.username = encodeURIComponent(body.username);
@@ -132,19 +135,6 @@ app.post('/lol', async (req, res) => {
         stat.status = response.status;
         stat.data_acc = response.data;
         stat.data_acc.profileIconId = 'http://avatar.leagueoflegends.com/' + body.server + '/' + body.username + '.png';
-        var response2 = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matchlists/by-account/' + response.data.accountId + '?endIndex=10&beginIndex=0&api_key=RGAPI-89416cf6-f3f8-4d12-ae69-21784ce64838')
-        stat.data_match = response2.data;
-        stat.match_info = [];
-        for (let i = 0; i < 10; i++) {
-            var response_mtch = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matches/' + stat.data_match.matches[i].gameId + '?api_key=RGAPI-89416cf6-f3f8-4d12-ae69-21784ce64838')
-            stat.mtchs.push(response_mtch.data);
-
-            // get the object we need to display important things on fight
-          
-            stat.match_info.push(await fill_obj(i, response_mtch));
-            // --------------------------------------------------------------
-        }
-        stat.winrate *= 10;
         let response3 = await axios.get('https://' + body.server + '.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/' + stat.data_acc.id + '?api_key=RGAPI-89416cf6-f3f8-4d12-ae69-21784ce64838')
         
         //get the possibly pick of the player
@@ -162,9 +152,24 @@ app.post('/lol', async (req, res) => {
         for (let i = 0; i < 3; i++)
             stat.data_last[i] = await getIconChamp(stock[i]);
         //--------------------------------------------------------------
-        } catch (error) { console.log(error) }
-    if (stat.status === 200)
-        res.send('Player Found!');
+
+        var response2 = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matchlists/by-account/' + response.data.accountId + '?endIndex=10&beginIndex=0&api_key=RGAPI-89416cf6-f3f8-4d12-ae69-21784ce64838')
+        stat.data_match = response2.data;
+        stat.match_info = [];
+        for (let i = 0; i < response2.data.matches.length; i++) {
+            var response_mtch = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matches/' + response2.data.matches[i].gameId + '?api_key=RGAPI-89416cf6-f3f8-4d12-ae69-21784ce64838')
+            stat.mtchs.push(response_mtch.data);
+
+            // get the object we need to display important things on fight
+          
+            stat.match_info.push(await fill_obj(i, response_mtch));
+            // --------------------------------------------------------------
+        }
+        stat.winrate *= 10;
+        } catch (error) {
+            res.send('nope');
+        }
+    res.send('Player Found!');
 })
 
 app.get('/lol', (req, res) => {

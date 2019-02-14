@@ -17,7 +17,10 @@ function get_id()
             'content-type': 'application/json',
         },
         success: (response) => {
-            window.location.replace('/lol_stat');
+            if (response == 'Player Found!') {
+                window.location.replace('/lol_stat');
+            } else
+                alert("Player "+ username +" is not found!\nOr don't have recent game played..");
         }
     });
 }

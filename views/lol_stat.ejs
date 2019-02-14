@@ -48,7 +48,10 @@
             <%for (let i = 0; i < stat.match_info.length; i++) {%>
                 <%if (stat.match_info[i].win === "WIN") {%>
                     <div class="match_info" style="background-color: #2d862d;">
-                        <img src="<%=stat.match_info[i].img%>" alt="Icon Champion" class="champ_played">
+                        <div class="icon_mode">
+                            <img src="<%=stat.match_info[i].img%>" alt="Icon Champion" class="champ_played">
+                            <p class="mode_g"><%=stat.match_info[i].mode%></p>
+                        </div>
                         <div class="time_lvl_minion">
                             <p class="gametime"><%=Math.round(stat.match_info[i].gameTime / 60)%> minutes</p>
                             <p>lvl: <%=stat.match_info[i].level%></p>
@@ -91,7 +94,10 @@
                     </div>
                 <%} else {%>
                     <div class="match_info" style="background-color: #990000;">
-                        <img src="<%=stat.match_info[i].img%>" alt="Icon Champion" class="champ_played">
+                        <div class="icon_mode">
+                            <img src="<%=stat.match_info[i].img%>" alt="Icon Champion" class="champ_played">
+                            <p class="mode_g"><%=stat.match_info[i].mode%></p>
+                        </div>
                         <div class="time_lvl_minion">
                             <p class="gametime"><%=Math.round(stat.match_info[i].gameTime / 60)%> minutes</p>
                             <p>lvl: <%=stat.match_info[i].level%></p>
