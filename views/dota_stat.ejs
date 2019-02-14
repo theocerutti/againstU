@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>DOTA - <%=stat_dota.username%></title>
+        <title>DOTA - <%=stat_dota.id32%></title>
         <meta charset="utf-8">
-        <link rel="icon" type="image/png" href="/assets/lib/icons/favicon.png"/>
+        <link rel="icon" type="image/png" href="/assets/lib/icons/favicon_againstu.png"/>
         <link rel="stylesheet" href="assets/dota_stat/css/style.css">
     </head>
     <header id="header">
@@ -18,22 +18,23 @@
     </header>
     <body>
         <div id="header_overview_div">
-            <div id="overview_div">
+            <div id="img_header_overview_img">
                 <img id="overview_img" src="<%=stat_dota.PlayerSummaries.avatarfull%>" alt="avatar_not_found" />
-                <div id="overview_div_info">
-                    <p><%=stat_dota.PlayerSummaries.personaname%></p>
-                    <p>Last login: <%=moment.unix(stat_dota.PlayerSummaries.lastlogoff).fromNow()%></p>
-                    <p>SteamID: <%= stat_dota.username%></p>
-                </div>
-            </div>
-            <div id="pourcentage_ranking_div">
-                <img src="<%=stat_dota.PlayerSummaries.avatarfull%>" alt="ranking_picture_not_found" />
-                <p>60% of victories</p>
             </div>
             <div id="steam_info_player_div">
+                <p>Nickname: <%=stat_dota.PlayerSummaries.personaname%></p>
+                <p>Last login: <%=moment.unix(stat_dota.PlayerSummaries.lastlogoff).fromNow()%></p>
                 <p>SteamID64 : <%=stat_dota.id64%></p>
                 <p>SteamID32 : <%=stat_dota.id32%></p>
                 <p>Profile: <a href="<%=stat_dota.PlayerSummaries.profileurl%>"><%=stat_dota.PlayerSummaries.profileurl%></a></p>
+            </div>
+            <div id="steam_info_player_div2">
+                <% if (stat_dota.PlayerSummaries.communityvisibilitystate === 1) { %>
+                    <p>Visibility: Private</p>
+                <% } else {%>
+                    <p>Visibility: Public</p>
+                    <p>Real Name: <%=stat_dota.PlayerSummaries.realname%></p>
+                <% } %>
                 <%switch (stat_dota.PlayerSummaries.personastate) {
                     case 0:%>
                         <p>Status: offline</p>

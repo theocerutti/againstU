@@ -16,24 +16,21 @@ var stat = {
 var stat_dota = {
     api_key: '291F6255D9427DB13DEEC82679CBFC87',
     id64: 0,
-    id32: '0',
-    username: 'not found',
-    server: 'not found',
-    success: -1,
+    id32: 0,
+    success: 1,
     PlayerSummaries: {},
     RecentMatches: {},
     RecentMatchesDetail: [],
     RecentSelfMatchesDetail: [],
-    FriendList: {},
     HeroesInfo: {},
     ItemsInfo: {}
 }
 
 var convert = new BigNumber('76561197960265728');
-function to32(steamId64) {
-    steamId64 = new BigNumber(steamId64);
-    var steamId32 = steamId64.minus(convert);
-    return steamId32.toString();
+function to64(steamId32) {
+    steamId32 = new BigNumber(steamId32);
+    var steamId64 = steamId32.plus(convert);
+    return steamId64.toString();
 }
 
 var champions = {};
@@ -91,13 +88,10 @@ app.post('/dota_stat', async (req, res) => {
         server = 'euw1'
     else if (body.server === "North America")
         server = 'na1'
-    stat_dota.username = body.username
+    stat_dota.id32 = body.steamid
     stat_dota.server = body.server
-    const info_steam = await axios.get('http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=' + stat_dota.api_key + '&vanityurl=' + body.username)
-    stat_dota.success = info_steam.data.response.success
-    if (stat_dota.success == 1) {
-        stat_dota.id64 = info_steam.data.response.steamid
-        stat_dota.id32 = to32(stat_dota.id64)
+    try {
+        stat_dota.id64 = to64(stat_dota.id32)
         const info_player_summaries = await axios.get('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + stat_dota.api_key + '&steamids=' + stat_dota.id64)
         stat_dota.PlayerSummaries = info_player_summaries.data.response.players[0]
         const info_match_history = await axios.get('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=' + stat_dota.api_key + '&account_id=' + stat_dota.id32 + '&matches_requested=5')
@@ -112,8 +106,8 @@ app.post('/dota_stat', async (req, res) => {
         stat_dota.HeroesInfo = info_heroes.data.result
         const info_items = await axios.get('http://api.steampowered.com/IEconDOTA2_570/GetGameItems/v1?key=' + stat_dota.api_key + '&language=en_us')
         stat_dota.ItemsInfo = info_items.data.result
-    } else {
-        console.log("Player not found!!")
+    } catch (error) {
+        res.send('player_not_found');
     }
     if (stat_dota.success === 1)
         res.send('Player found')

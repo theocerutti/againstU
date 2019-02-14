@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="/assets/page2/css/style.css"/>
         <title>Dota2</title>
-        <link rel="icon" type="image/png" href="/assets/lib/icons/favicon.png"/>
+        <link rel="icon" type="image/png" href="/assets/lib/icons/favicon_againstu.png"/>
     </head>
     <header id="header">
         <a href="index"><img src="/assets/lib/images/againstu.png" alt="main_logo" id="main_logo"/></a>
@@ -16,13 +16,17 @@
     </header>
     <body id="body_div">
         <div id="choose_game_txt">
-            <h1>Enter your nickname:</h1>
+            <h1>Enter your SteamID32:</h1>
         </div>
         <div id="input_pseudo_div">
-            <input type="text" id="input_pseudo" placeholder="Nickname..."></input>
+            <input type="text" id="input_steamid" placeholder="SteamID32..."></input>
         </div>
         <div id="submit_button_div">
             <button type="submit" id="submit_button" onclick="get_id_dota()">Submit</button>
+        </div>
+        <div id="steamid_div">
+            <h2 id="find_your_steam_id">Find your SteamID32</h2>
+            <a id="steamid_a"href="https://steamid.xyz/">HERE</a>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="/assets/js/dota_stat.js"></script>

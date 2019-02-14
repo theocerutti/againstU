@@ -1,17 +1,21 @@
 function get_id_dota() {
-    const username = $('#input_pseudo').val();
+    const steamid = $('#input_steamid').val();
 
     $.ajax({
         method: "POST",
         url: "http://localhost:8080/dota_stat",
         data: JSON.stringify({
-            username
+            steamid
         }),
         headers: {
             'content-type': 'application/json',
         },
         success: (response) => {
-            window.location.replace('dota_stat')
+            if (response === "player_not_found") {
+                alert("Player not found or private profile")
+            } else {
+                window.location.replace('dota_stat')
+            }
         }
     });
 }
