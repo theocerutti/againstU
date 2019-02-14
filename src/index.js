@@ -89,7 +89,6 @@ async function fill_obj(i, response_mtch)
         "item5": "",
         "item6": ""
     }
-
     obj.idChamp = stat.data_match.matches[i].champion;
     obj.img = await getIconChamp(obj.idChamp);
     for (let w = 0; w < 10; w++) {
@@ -109,14 +108,9 @@ async function fill_obj(i, response_mtch)
             obj.D = response_mtch.data.participants[w].stats.deaths;
             obj.A = response_mtch.data.participants[w].stats.assists;
             obj.KDA = (obj.K + obj.A) / obj.D;
-            obj.item0 = 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/' + String(response_mtch.data.participants[w].stats.item0) + '.png';
-            obj.item1 = 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/' + String(response_mtch.data.participants[w].stats.item1) + '.png';
-            obj.item2 = 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/' + String(response_mtch.data.participants[w].stats.item2) + '.png';
-            obj.item3 = 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/' + String(response_mtch.data.participants[w].stats.item3) + '.png';
-            obj.item4 = 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/' + String(response_mtch.data.participants[w].stats.item4) + '.png';
-            obj.item5 = 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/' + String(response_mtch.data.participants[w].stats.item5) + '.png';
-            obj.item6 = 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/' + String(response_mtch.data.participants[w].stats.item6) + '.png';
-        } 
+            for (var nb = 0; nb < 6; nb++)
+                obj["item" + nb] = 'http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/' + String(response_mtch.data.participants[w].stats["item" + nb]) + '.png';
+        }
     }
     return (obj);
 }
@@ -139,7 +133,7 @@ app.post('/lol', async (req, res) => {
         stat.data_acc = response.data;
         stat.data_acc.profileIconId = 'http://avatar.leagueoflegends.com/' + body.server + '/' + body.username + '.png';
         let response3 = await axios.get('https://' + body.server + '.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/' + stat.data_acc.id + '?api_key=RGAPI-af61d6d5-b055-4425-9adb-a16439a29a3f')
-        
+
         //get the possibly pick of the player
         let stock = [0, 0, 0];
         for (let w = 0, x = 0; w < 3; w++) {
@@ -164,7 +158,6 @@ app.post('/lol', async (req, res) => {
             stat.mtchs.push(response_mtch.data);
 
             // get the object we need to display important things on fight
-          
             stat.match_info.push(await fill_obj(i, response_mtch));
             // --------------------------------------------------------------
         }
