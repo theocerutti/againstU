@@ -1,0 +1,67 @@
+<div id="match_table">
+    <table>
+        <div id="txt_who_win_div">
+            <% if (id_team == 0) { %>
+                <h4 id="txt_who_win" class="txt_dire">DIRE</h4>
+                <%if (!stat_dota.RecentMatchesDetail[n_matches].result.radiant_win) { %>
+                    <img class="img_status" alt="img_not_found" src="/assets/lib/images/trophy.png"/>
+                <% } else { %>
+                    <img class="img_status" alt="img_not_found" src="/assets/lib/images/lose_icon.png"/>
+                <% } %>
+            <% } else { %>
+                <h4 id="txt_who_win" class="txt_radiant">RADIANT</h4>
+                <%if (stat_dota.RecentMatchesDetail[n_matches].result.radiant_win) { %>
+                    <img class="img_status" alt="img_not_found" src="/assets/lib/images/trophy.png"/>
+                <% } else { %>
+                    <img class="img_status" alt="img_not_found" src="/assets/lib/images/lose_icon.png"/>
+                <% } %>
+            <% } %>
+        </div>
+        <thead>
+            <tr>
+                <th>Hero</th>
+                <th>Last Hits</th>
+                <th>K</th>
+                <th>D</th>
+                <th>A</th>
+                <th>Gold</th>
+                <th>DMG</th>
+                <th>Heal</th>
+                <th>Items</th>
+            </tr>
+        </thead>
+        <% for (var i = 0; i < 5; i++, n_player--) { %>
+            <tbody>
+                <tr>
+                    <% for (var j = 0; j < stat_dota.HeroesInfo.count; j++) { %>
+                        <%if (stat_dota.RecentMatchesDetail[n_matches].result.players[n_player].hero_id === stat_dota.HeroesInfo.heroes[j].id) { %>
+                            <td><img id="img_hero" alt="hero_not_found" title="<%=stat_dota.HeroesInfo.heroes[j].localized_name%> (LvL: <%=stat_dota.RecentMatchesDetail[n_matches].result.players[n_player].level%>)"
+                            src="http://cdn.dota2.com/apps/dota2/images/heroes/<%=stat_dota.HeroesInfo.heroes[j].name.substring(14)%>_sb.png"/></td>
+                        <% } %>
+                    <% } %>
+                    <td><%=stat_dota.RecentMatchesDetail[n_matches].result.players[n_player].last_hits%></td>
+                    <td><%=stat_dota.RecentMatchesDetail[n_matches].result.players[n_player].kills%></td>
+                    <td><%=stat_dota.RecentMatchesDetail[n_matches].result.players[n_player].deaths%></td>
+                    <td><%=stat_dota.RecentMatchesDetail[n_matches].result.players[n_player].assists%></td>
+                    <td><%=stat_dota.RecentMatchesDetail[n_matches].result.players[n_player].gold + stat_dota.RecentMatchesDetail[n_matches].result.players[n_player].gold_spent%></td>
+                    <td><%=stat_dota.RecentMatchesDetail[n_matches].result.players[n_player].hero_damage%></td>
+                    <td><%=stat_dota.RecentMatchesDetail[n_matches].result.players[n_player].hero_healing%></td>
+                    <td>
+                        <div id="all_item_div">
+                            <% for (var n_item = 0; n_item < 5; n_item++) { %>
+                                <% for (var pos_item = 0; pos_item < stat_dota.ItemsInfo.items.length; pos_item++) { %>
+                                    <% if (stat_dota.ItemsInfo.items[pos_item].id === stat_dota.RecentMatchesDetail[n_matches].result.players[n_player]['item_' + n_item]) { %>
+                                        <%if (stat_dota.RecentMatchesDetail[n_matches].result.players[n_player]["item_" + n_item] != 0) { %>
+                                            <img class="img_item" alt="item0_not_found" title="<%=stat_dota.ItemsInfo.items[pos_item].localized_name%> / Cost: <%=stat_dota.ItemsInfo.items[pos_item].cost%>"
+                                            src='http://cdn.dota2.com/apps/dota2/images/items/<%=stat_dota.ItemsInfo.items[pos_item].name.substring(5)%>_lg.png'/>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
+                            <% } %>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        <% } %>
+    </table>
+</div>

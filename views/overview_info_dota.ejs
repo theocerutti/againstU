@@ -1,0 +1,49 @@
+<div id="header_overview_div">
+    <div id="img_header_overview_img">
+        <img id="overview_img" src="<%=stat_dota.PlayerSummaries.avatarfull%>" alt="avatar_not_found" />
+    </div>
+    <div id="steam_info_player_div">
+        <p>Nickname: <%=stat_dota.PlayerSummaries.personaname%></p>
+        <p>Last login: <%=moment.unix(stat_dota.PlayerSummaries.lastlogoff).fromNow()%></p>
+        <p>SteamID64 : <%=stat_dota.id64%></p>
+        <p>SteamID32 : <%=stat_dota.id32%></p>
+        <p>Profile: <a href="<%=stat_dota.PlayerSummaries.profileurl%>"><%=stat_dota.PlayerSummaries.profileurl%></a></p>
+    </div>
+    <div id="steam_info_player_div2">
+        <% if (stat_dota.PlayerSummaries.communityvisibilitystate === 1) { %>
+            <p>Visibility: Private</p>
+        <% } else {%>
+            <p>Visibility: Public</p>
+            <p>Real Name: <%=stat_dota.PlayerSummaries.realname%></p>
+        <% } %>
+        <%switch (stat_dota.PlayerSummaries.personastate) {
+            case 0:%>
+                <p>Status: offline</p>
+            <%break;
+            case 1:%>
+                <p>Status: online</p>
+            <%break;
+            case 2:%>
+                <p>Status: Busy</p>
+            <%break;
+            case 3:%>
+                <p>Status: Away</p>
+            <%break;
+            case 4:%>
+                <p>Status: Snooze</p>
+            <%break;
+            case 5:%>
+                <p>Status: Looking to trade</p>
+            <%break;
+            case 6:%>
+                <p>Status: Looking to play</p>
+            <%break;
+            default:%>
+                <p>Status: Unknown</p>
+            <%break;
+        } %>
+    </div>
+</div>
+<div id="txt_detailed_matches">
+    <h1 class="txt_neutral">Last 5 detailed games:</h1>
+</div>

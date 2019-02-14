@@ -1,0 +1,41 @@
+<div id="overview_match_info">
+    <span>
+        <h2 class="txt_neutral">Match N°<%=n_matches + 1%> (id: <%=stat_dota.RecentMatches.result.matches[n_matches].match_id%>)</h2>
+        <h4 class="txt_neutral"><%=moment.unix(stat_dota.RecentMatches.result.matches[n_matches].start_time).fromNow()%></h4>
+    </span>
+    <figure id="fig_overview_img_hero">
+        <% for (var self_hero_pos = 0; self_hero_pos < stat_dota.HeroesInfo.count; self_hero_pos++) { %>
+            <%if (stat_dota.RecentSelfMatchesDetail[n_matches].hero_id === stat_dota.HeroesInfo.heroes[self_hero_pos].id) { %>
+                <%if (stat_dota.RecentSelfMatchesDetail[n_matches].player_slot <= 127) { %>
+                    <img id="overview_img_hero_radiant" alt="img not found" src="http://cdn.dota2.com/apps/dota2/images/heroes/<%=stat_dota.HeroesInfo.heroes[self_hero_pos].name.substring(14)%>_lg.png"/>
+                <% } else { %>
+                    <img id="overview_img_hero_dire" alt="img not found" src="http://cdn.dota2.com/apps/dota2/images/heroes/<%=stat_dota.HeroesInfo.heroes[self_hero_pos].name.substring(14)%>_lg.png"/>
+                <% } %>
+                <figcaption class="figcaption_overview_img_hero txt_neutral">Your pick</figcaption>
+            <% } %>
+        <% } %>
+    </figure>
+    <div id="img_trophy_overview_div">
+        <%if (stat_dota.RecentMatchesDetail[n_matches].result.radiant_win && stat_dota.RecentSelfMatchesDetail[n_matches].player_slot <= 127) { %>
+            <img alt="img_not_found" src="/assets/lib/images/trophy.png"/>
+        <% } else if (!stat_dota.RecentMatchesDetail[n_matches].result.radiant_win && stat_dota.RecentSelfMatchesDetail[n_matches].player_slot > 127) { %>
+            <img alt="img_not_found" src="/assets/lib/images/trophy.png"/>
+        <% } else { %>
+            <img alt="img_not_found" src="/assets/lib/images/lose_icon.png"/>
+        <% } %>
+    </div>
+</div>
+<div id="sub_overview_match_info">
+    <div id="txt_victory">
+        <% if (stat_dota.RecentMatchesDetail[n_matches].result.radiant_win) { %>
+            <h2 class="txt_radiant">Victory of RADIANT</h2>
+        <% } else { %>
+            <h2 class="txt_dire">Victory of DIRE</h2>
+        <% } %>
+    </div>
+    <div id="score_div">
+        <h3 id="txt_score_radiant"><%=stat_dota.RecentMatchesDetail[n_matches].result.radiant_score%></h3>
+        <h3 id="txt_duration"><%=moment.utc(stat_dota.RecentMatchesDetail[n_matches].result.duration * 1000).format('mm:ss')%></h3>
+        <h3 id="txt_score_dire"><%=stat_dota.RecentMatchesDetail[n_matches].result.dire_score%></h3>
+    </div>
+</div>
