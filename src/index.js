@@ -216,6 +216,10 @@ app.get('/lol_stat', (req, res) => {
     res.render('lol_stat', { stat });
 })
 
+app.get('/about', (req, res) => {
+    res.render('about')
+})
+
 app.use((req, res, next) => {
     res.sendStatus(404).statusMessage
 })

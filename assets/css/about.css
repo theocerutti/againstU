@@ -1,0 +1,132 @@
+@font-face {
+    font-family: "latoBlack";
+    src: url("../lib/fonts/lato/Lato-Black.ttf");
+}
+
+@font-face {
+    font-family: "latoLight";
+    src: url("../lib/fonts/lato/Lato-Light.ttf");
+}
+
+@font-face {
+    font-family: "marketDeco";
+    src: url("../lib/fonts/market_deco/Market_Deco.ttf");
+}
+
+#header {
+    position: fixed;
+    height: 10%;
+    width: 100%;
+    background-color: black;
+    left: 0;
+    top: 0;
+}
+
+h1, h2, h3, h4, p, ul, label, abbr {
+    font-family: 'latoBlack';
+    color: #FCF7F7;
+}
+
+h1 {
+    font-size: 80px;
+}
+
+h2 {
+    font-size: 60px;
+}
+
+p {
+    text-align: center;
+}
+
+label {
+    font-size: 15px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+body {
+    background-color: #2B2C2F;
+}
+
+#header_contener {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button_header {
+    padding: 20px;
+    padding-right: 100px;
+}
+
+.button_header:hover {
+    text-decoration: underline;
+}
+
+#main_logo {
+    float: left;
+    padding: 20px;
+    height: 60px;
+}
+
+#info_website {
+    width: 50%;
+    text-align: center;
+    padding-top: 200px;
+    margin: auto;
+}
+
+#title {
+    background-color: #120806;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#p_info_about_us {
+    font-family: latoLight, latoBlack;
+}
+
+#table {
+    background-color: #393A39;
+    padding-bottom: 10px;
+}
+
+#info_div {
+    display: flex;
+    justify-content: center;
+}
+
+.dev_div {
+    display: column;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.dev_name {
+    text-align: center;
+    font-size: 60px;
+}
+
+.github_img {
+    text-align: center;
+    width: 70%;
+    height: 70%;
+}
+
+.dev_img_github_div {
+    text-align: center;
+}
