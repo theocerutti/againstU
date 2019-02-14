@@ -131,11 +131,11 @@ app.post('/lol', async (req, res) => {
     else if (body.server === "North America")
         body.server = "na1";
     try {
-        let response = await axios.get('https://' + body.server + '.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + body.username + '?api_key=RGAPI-89416cf6-f3f8-4d12-ae69-21784ce64838')
+        let response = await axios.get('https://' + body.server + '.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + body.username + '?api_key=RGAPI-af61d6d5-b055-4425-9adb-a16439a29a3f')
         stat.status = response.status;
         stat.data_acc = response.data;
         stat.data_acc.profileIconId = 'http://avatar.leagueoflegends.com/' + body.server + '/' + body.username + '.png';
-        let response3 = await axios.get('https://' + body.server + '.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/' + stat.data_acc.id + '?api_key=RGAPI-89416cf6-f3f8-4d12-ae69-21784ce64838')
+        let response3 = await axios.get('https://' + body.server + '.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/' + stat.data_acc.id + '?api_key=RGAPI-af61d6d5-b055-4425-9adb-a16439a29a3f')
         
         //get the possibly pick of the player
         let stock = [0, 0, 0];
@@ -153,11 +153,11 @@ app.post('/lol', async (req, res) => {
             stat.data_last[i] = await getIconChamp(stock[i]);
         //--------------------------------------------------------------
 
-        var response2 = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matchlists/by-account/' + response.data.accountId + '?endIndex=10&beginIndex=0&api_key=RGAPI-89416cf6-f3f8-4d12-ae69-21784ce64838')
+        var response2 = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matchlists/by-account/' + response.data.accountId + '?endIndex=10&beginIndex=0&api_key=RGAPI-af61d6d5-b055-4425-9adb-a16439a29a3f')
         stat.data_match = response2.data;
         stat.match_info = [];
         for (let i = 0; i < response2.data.matches.length; i++) {
-            var response_mtch = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matches/' + response2.data.matches[i].gameId + '?api_key=RGAPI-89416cf6-f3f8-4d12-ae69-21784ce64838')
+            var response_mtch = await axios.get('https://' + body.server + '.api.riotgames.com/lol/match/v4/matches/' + response2.data.matches[i].gameId + '?api_key=RGAPI-af61d6d5-b055-4425-9adb-a16439a29a3f')
             stat.mtchs.push(response_mtch.data);
 
             // get the object we need to display important things on fight
