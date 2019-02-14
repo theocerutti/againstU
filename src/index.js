@@ -79,7 +79,7 @@ async function fill_obj(i, response_mtch)
         "damageTaken": 0,
         "K": 0,
         "D": 0,
-        "A": 0,    
+        "A": 0,
         "KDA": 0,
         "item0": "",
         "item1": "",

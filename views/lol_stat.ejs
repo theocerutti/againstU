@@ -3,7 +3,7 @@
     <head>
         <title>LOL - <%=stat.data_acc.name%></title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="assets/lol_stat/css/style.css">
+        <link rel="stylesheet" href="assets/css/lol_stat.css">
         <link rel="icon" type="image/png" href="/assets/lib/icons/icon_againstu.png"/>
     </head>
 
@@ -25,7 +25,6 @@
                     <p id="text_lvl">Level : <%=stat.data_acc.summonerLevel%></p>
                 </div>
             </div>
-            
             <div id="best_champ">
                 <div id="possible_pick">
                     <p id="pp_text">Possible pick:</p>
@@ -43,7 +42,6 @@
                 <p id="winrate_text"><%=stat.winrate%>%</p>
             </div>
         </div>
-
         <div id="body_matches">
             <h3 id="lastg">Last game played : </h3>
             <%for (let i = 0; i < stat.match_info.length; i++) {%>
