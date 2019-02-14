@@ -15,9 +15,19 @@ body
     background-color: #000127;
 }
 
-h1, h2, h3, p, label
+h1, h2, h3, p, label, a
 {
     font-family: latoBlack;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: white;
 }
 
 #header
@@ -121,7 +131,7 @@ h1, h2, h3, p, label
 
 .last_three
 {
-    padding-left: 10px; 
+    padding-left: 10px;
     padding-right: 10px;
 }
 
@@ -141,7 +151,7 @@ h1, h2, h3, p, label
     width: 120px;
     height: 60%;
     padding-top: 40px;
-    padding-left: 10px; 
+    padding-left: 10px;
     padding-right: 10px;
 }
 
