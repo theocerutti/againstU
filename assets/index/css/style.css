@@ -93,6 +93,7 @@ a:visited
 {
     float: left;
     padding: 20px;
+    height: 60px;
 }
 
 #choose_game_contener

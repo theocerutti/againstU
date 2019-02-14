@@ -29,6 +29,7 @@ h1, h2, p, label
 {
     float: left;
     padding: 20px;
+    height: 60px;
 }
 
 .button_header
