@@ -23,10 +23,10 @@ var stat_dota = {
     PlayerSummaries: {},
     RecentMatches: {},
     RecentMatchesDetail: [],
+    RecentSelfMatchesDetail: [],
     FriendList: {},
     HeroesInfo: {},
-    ItemsInfo: {},
-    date_last_login: 'not found'
+    ItemsInfo: {}
 }
 
 var convert = new BigNumber('76561197960265728');
@@ -93,25 +93,25 @@ app.post('/dota_stat', async (req, res) => {
         server = 'na1'
     stat_dota.username = body.username
     stat_dota.server = body.server
-    const res1_dota = await axios.get('http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=' + stat_dota.api_key + '&vanityurl=' + body.username)
-    stat_dota.success = res1_dota.data.response.success
+    const info_steam = await axios.get('http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=' + stat_dota.api_key + '&vanityurl=' + body.username)
+    stat_dota.success = info_steam.data.response.success
     if (stat_dota.success == 1) {
-        stat_dota.id64 = res1_dota.data.response.steamid
+        stat_dota.id64 = info_steam.data.response.steamid
         stat_dota.id32 = to32(stat_dota.id64)
-        const res2_dota = await axios.get('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + stat_dota.api_key + '&steamids=' + stat_dota.id64)
-        stat_dota.PlayerSummaries = res2_dota.data.response.players[0]
-        var date = moment.unix(stat_dota.PlayerSummaries.lastlogoff).format("dddd, hh:mm:ss")
-        stat_dota.date_last_login = date
-        const res3_dota = await axios.get('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=' + stat_dota.api_key + '&account_id=' + stat_dota.id32 + '&matches_requested=5')
-        stat_dota.RecentMatches = res3_dota.data
+        const info_player_summaries = await axios.get('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + stat_dota.api_key + '&steamids=' + stat_dota.id64)
+        stat_dota.PlayerSummaries = info_player_summaries.data.response.players[0]
+        const info_match_history = await axios.get('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=' + stat_dota.api_key + '&account_id=' + stat_dota.id32 + '&matches_requested=5')
+        stat_dota.RecentMatches = info_match_history.data
         for (var match = 0; match < 5; match++) {
-            var res4_dota = await axios.get('http://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/v001?key=' + stat_dota.api_key + '&match_id=' + stat_dota.RecentMatches.result.matches[match].match_id)
-            stat_dota.RecentMatchesDetail[match] = res4_dota.data
+            var info_full_match = await axios.get('http://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/v001?key=' + stat_dota.api_key + '&match_id=' + stat_dota.RecentMatches.result.matches[match].match_id)
+            stat_dota.RecentMatchesDetail[match] = info_full_match.data
         }
-        const res5_dota = await axios.get('http://api.steampowered.com/IEconDOTA2_570/GetHeroes/v1?key=' + stat_dota.api_key + '&language=us')
-        stat_dota.HeroesInfo = res5_dota.data.result
-        const res6_data = await axios.get('http://api.steampowered.com/IEconDOTA2_570/GetGameItems/v1?key=' + stat_dota.api_key + '&language=us')
-        stat_dota.ItemsInfo = res6_data.data.result
+        var info_self_match = await axios.get('https://api.opendota.com/api/players/' + stat_dota.id32 + '/recentMatches?api_key=' + stat_dota.api_key + '&limit=5')
+        stat_dota.RecentSelfMatchesDetail = info_self_match.data
+        const info_heroes = await axios.get('http://api.steampowered.com/IEconDOTA2_570/GetHeroes/v1?key=' + stat_dota.api_key + '&language=en_us')
+        stat_dota.HeroesInfo = info_heroes.data.result
+        const info_items = await axios.get('http://api.steampowered.com/IEconDOTA2_570/GetGameItems/v1?key=' + stat_dota.api_key + '&language=en_us')
+        stat_dota.ItemsInfo = info_items.data.result
     } else {
         console.log("Player not found!!")
     }
@@ -124,7 +124,7 @@ app.get('/dota', (req, res) => {
 })
 
 app.get('/dota_stat', (req, res) => {
-    res.render('dota_stat', { stat_dota })
+    res.render('dota_stat', { stat_dota, moment })
 })
 
 app.get('/lol_stat', (req, res) => {
