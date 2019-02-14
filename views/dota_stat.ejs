@@ -26,12 +26,6 @@
                     <p>SteamID: <%= stat_dota.username%></p>
                 </div>
             </div>
-            <div id="matches_win_div">
-                <h2 id="heroes_most_played_title">Heroes most played:</h2>
-                <img class="img_hero_most_played" src="http://cdn.dota2.com/apps/dota2/images/heroes/<%=stat_dota.HeroesInfo.heroes[0].name.substring(14)%>_lg.png" alt="heroe1_not_found" />
-                <img class="img_hero_most_played" src="http://cdn.dota2.com/apps/dota2/images/heroes/<%=stat_dota.HeroesInfo.heroes[0].name.substring(14)%>_lg.png" alt="heroe2_not_found" />
-                <img class="img_hero_most_played" src="http://cdn.dota2.com/apps/dota2/images/heroes/<%=stat_dota.HeroesInfo.heroes[0].name.substring(14)%>_lg.png" alt="heroe3_not_found" />
-            </div>
             <div id="pourcentage_ranking_div">
                 <img src="<%=stat_dota.PlayerSummaries.avatarfull%>" alt="ranking_picture_not_found" />
                 <p>60% of victories</p>
@@ -154,7 +148,8 @@
                                             <tr>
                                                 <% for (var j = 0; j < stat_dota.HeroesInfo.count; j++) { %>
                                                     <%if (stat_dota.RecentMatchesDetail[n_matches].result.players[n_player].hero_id === stat_dota.HeroesInfo.heroes[j].id) { %>
-                                                        <td><img id="img_hero" alt="hero_not_found" title="<%=stat_dota.HeroesInfo.heroes[j].localized_name%> (LvL: <%=stat_dota.RecentMatchesDetail[n_matches].result.players[n_player].level%>)" src="http://cdn.dota2.com/apps/dota2/images/heroes/<%=stat_dota.HeroesInfo.heroes[j].name.substring(14)%>_sb.png"/></td>
+                                                        <td><img id="img_hero" alt="hero_not_found" title="<%=stat_dota.HeroesInfo.heroes[j].localized_name%> (LvL: <%=stat_dota.RecentMatchesDetail[n_matches].result.players[n_player].level%>)"
+                                                        src="http://cdn.dota2.com/apps/dota2/images/heroes/<%=stat_dota.HeroesInfo.heroes[j].name.substring(14)%>_sb.png"/></td>
                                                     <% } %>
                                                 <% } %>
                                                 <td><%=stat_dota.RecentMatchesDetail[n_matches].result.players[n_player].last_hits%></td>
@@ -170,7 +165,8 @@
                                                             <% for (var pos_item = 0; pos_item < stat_dota.ItemsInfo.items.length; pos_item++) { %>
                                                                 <% if (stat_dota.ItemsInfo.items[pos_item].id === stat_dota.RecentMatchesDetail[n_matches].result.players[n_player]['item_' + n_item]) { %>
                                                                     <%if (stat_dota.RecentMatchesDetail[n_matches].result.players[n_player]["item_" + n_item] != 0) { %>
-                                                                        <img class="img_item" alt="item0_not_found" title="<%=stat_dota.ItemsInfo.items[pos_item].localized_name%> / Cost: <%=stat_dota.ItemsInfo.items[pos_item].cost%>" src='http://cdn.dota2.com/apps/dota2/images/items/<%=stat_dota.ItemsInfo.items[pos_item].name.substring(5)%>_lg.png'/>
+                                                                        <img class="img_item" alt="item0_not_found" title="<%=stat_dota.ItemsInfo.items[pos_item].localized_name%> / Cost: <%=stat_dota.ItemsInfo.items[pos_item].cost%>"
+                                                                        src='http://cdn.dota2.com/apps/dota2/images/items/<%=stat_dota.ItemsInfo.items[pos_item].name.substring(5)%>_lg.png'/>
                                                                     <% } %>
                                                                 <% } %>
                                                             <% } %>

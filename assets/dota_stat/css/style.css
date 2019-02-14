@@ -107,20 +107,6 @@ body {
     flex-direction: column;
 }
 
-#matches_win_div {
-    background-color: blue;
-    border: 3px solid gray;
-}
-
-#heroes_most_played_title {
-    text-align: center;
-}
-.img_hero_most_played {
-    margin-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
 #pourcentage_ranking_div {
     background-color: yellow;
     border: 3px solid gray;

@@ -74,7 +74,7 @@ a
 {
     padding-left: 100px;
     padding-right: 100px;
-    padding-top: 100px;
+    padding-top: 200px;
     padding-bottom: 50px;
     -webkit-text-stroke: 3px #FF5722;
     text-align: center;
@@ -92,26 +92,6 @@ a
     height: 50px;
     font-size: 45px;
     font-family: "latoLight";
-}
-
-#server_country_txt
-{
-    -webkit-text-stroke: 2px #FF5722;
-    text-align: center;
-}
-
-#select_server_div
-{
-    padding-left: 42%;
-}
-
-#select_server
-{
-    width: 300px;
-    font-family: "latoLight";
-    font-size: 20px;
-    color: white;
-    background-color: black
 }
 
 #submit_button_div
