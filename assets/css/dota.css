@@ -1,13 +1,13 @@
 @font-face
 {
     font-family: "latoBlack";
-    src: url("../../lib/fonts/lato/Lato-Black.ttf");
+    src: url("../lib/fonts/lato/Lato-Black.ttf");
 }
 
 @font-face
 {
     font-family: "latoLight";
-    src: url("../../lib/fonts/lato/Lato-Light.ttf");
+    src: url("../lib/fonts/lato/Lato-Light.ttf");
 }
 
 #header
@@ -47,7 +47,7 @@ a:hover {
 
 #body_div
 {
-    background-image: url("../../lib/images/wallpaper_dota.jpg");
+    background-image: url("../lib/images/wallpaper_dota.jpg");
 }
 
 #header_contener

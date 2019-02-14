@@ -1,16 +1,16 @@
 @font-face {
     font-family: "latoBlack";
-    src: url("../../lib/fonts/lato/Lato-Black.ttf");
+    src: url("../lib/fonts/lato/Lato-Black.ttf");
 }
 
 @font-face {
     font-family: "latoLight";
-    src: url("../../lib/fonts/lato/Lato-Light.ttf");
+    src: url("../lib/fonts/lato/Lato-Light.ttf");
 }
 
 @font-face {
     font-family: "marketDeco";
-    src: url("../../lib/fonts/market_deco/Market_Deco.ttf");
+    src: url("../lib/fonts/market_deco/Market_Deco.ttf");
 }
 
 body {

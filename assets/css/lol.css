@@ -8,7 +8,7 @@
 @font-face
 {
     font-family: "latoBlack";
-    src: url('../../lib/fonts/lato/Lato-Black.ttf');
+    src: url('../lib/fonts/lato/Lato-Black.ttf');
 }
 
 h1, h2, p, label, ul, a
@@ -59,7 +59,7 @@ a
 
 body
 {
-    background-image: url("../../lib/images/bg_lol.jpg");
+    background-image: url("../lib/images/bg_lol.jpg");
 }
 
 #info{
